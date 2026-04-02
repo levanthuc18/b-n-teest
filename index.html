@@ -29,15 +29,15 @@
         
         .form-label {
             display: block;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: #334155;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             font-weight: 700;
         }
         .form-input {
             width: 100%;
-            padding: 0.6rem 0;
-            font-size: 1.6rem;
+            padding: 0.4rem 0;
+            font-size: 1.1rem;
             border: none;
             border-bottom: 2px solid #e2e8f0;
             outline: none;
@@ -46,12 +46,11 @@
             background: transparent;
             transition: all 0.2s;
         }
-        .form-input:focus { border-bottom: 3px solid #3b82f6; color: #2563eb; }
-        .form-input.highlight-blue { color: #2563eb; font-weight: 900; font-size: 2rem; }
+        .form-input:focus { border-bottom: 2px solid #3b82f6; color: #2563eb; }
+        .form-input.highlight-blue { color: #2563eb; font-weight: 900; font-size: 1.5rem; }
         .form-input.uppercase-input { text-transform: uppercase; }
         .form-input::placeholder { color: #cbd5e1; font-weight: 400; }
 
-        /* Dark Preview Card */
         .preview-card {
             background: #0f172a;
             border-radius: 2rem;
@@ -79,7 +78,6 @@
 </head>
 <body class="bg-slate-50 min-h-screen">
 
-    <!-- MÀN HÌNH KHÓA -->
     <div id="authOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-6">
         <div class="bg-white p-10 rounded-[2.5rem] shadow-2xl max-w-sm w-full text-center">
             <h2 class="text-2xl font-black mb-6 tracking-tight">XÁC THỰC</h2>
@@ -89,7 +87,6 @@
         </div>
     </div>
 
-    <!-- NỘI DUNG CHÍNH -->
     <div id="mainContent" class="max-w-[1300px] mx-auto p-6 md:p-16 hidden">
         <div class="flex justify-between items-center mb-16">
             <h1 class="text-4xl font-black text-slate-900 tracking-tighter">SOLAR DOC <span class="text-blue-600 font-black">V3.4</span></h1>
@@ -97,10 +94,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-            
-            <!-- CỘT TRÁI -->
             <div class="space-y-16">
-                <!-- PHẦN 1 -->
                 <div>
                     <h2 class="section-title text-orange-600">1. TẢI FILE WORD MẪU (.DOCX)</h2>
                     <div class="line-orange"></div>
@@ -111,12 +105,11 @@
                     </div>
                 </div>
 
-                <!-- PHẦN 2 -->
                 <div>
                     <h2 class="section-title text-blue-600">2. THÔNG TIN CHI TIẾT HỢP ĐỒNG</h2>
                     <div class="line-blue"></div>
                     
-                    <div class="grid grid-cols-2 gap-x-12 gap-y-10">
+                    <div class="grid grid-cols-2 gap-x-12 gap-y-8">
                         <div class="form-group">
                             <label class="form-label">Số HĐ</label>
                             <input type="text" id="contractNo" class="form-input" value="01/2026/HĐNT/XT_AT">
@@ -147,15 +140,14 @@
 
                         <div class="form-group col-span-2">
                             <label class="form-label">Tổng giá trị hợp đồng (VNĐ)</label>
-                            <input type="number" id="totalValue" class="form-input highlight-blue" value="187600000">
+                            <!-- Chuyển type thành text để xử lý định dạng dấu chấm -->
+                            <input type="text" id="totalValueDisplay" class="form-input highlight-blue" value="187.600.000">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- CỘT PHẢI -->
             <div class="space-y-16">
-                <!-- PHẦN 3 -->
                 <div>
                     <h2 class="section-title text-purple-600">3. Tùy chỉnh tên File xuất ra</h2>
                     <div class="line-purple"></div>
@@ -163,18 +155,16 @@
                     <p class="text-[11px] text-slate-400 mt-3 font-bold">* Hệ thống sẽ tự thêm đuôi .docx khi tải về.</p>
                 </div>
 
-                <!-- XEM TRƯỚC -->
                 <div class="preview-card">
                     <div class="flex justify-between items-center mb-12">
                         <div>
                             <h3 class="text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] mb-1">Live Preview</h3>
                             <p class="text-lg font-black text-white">CƠ CẤU THANH TOÁN</p>
                         </div>
-                        <button id="generateBtn" class="btn-export">TẠI FILE WORD</button>
+                        <button id="generateBtn" class="btn-export">TẠO FILE WORD</button>
                     </div>
 
                     <div class="space-y-12">
-                        <!-- ĐỢT 1 -->
                         <div>
                             <div class="flex items-center gap-2 mb-2">
                                 <div class="w-2 h-2 rounded-full bg-blue-500"></div>
@@ -187,7 +177,6 @@
                             <p id="viewS1Text" class="text-[11px] text-slate-400 italic mt-2 font-bold leading-relaxed">...</p>
                         </div>
 
-                        <!-- ĐỢT 2 -->
                         <div>
                             <div class="flex items-center gap-2 mb-2">
                                 <div class="w-2 h-2 rounded-full bg-green-500"></div>
@@ -200,7 +189,6 @@
                             <p id="viewS2Text" class="text-[11px] text-slate-400 italic mt-2 font-bold leading-relaxed">...</p>
                         </div>
 
-                        <!-- TỔNG GIÁ TRỊ -->
                         <div class="pt-10 border-t border-slate-800 flex flex-col items-end">
                             <span class="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-2">Tổng quyết toán</span>
                             <div class="flex items-baseline gap-3">
@@ -219,7 +207,6 @@
     <script>
         const MY_PASSWORD = "123";
 
-        // Auth logic
         document.getElementById('loginBtn').onclick = function() {
             if(document.getElementById('passInput').value === MY_PASSWORD) {
                 document.getElementById('authOverlay').style.display = 'none';
@@ -230,12 +217,10 @@
             }
         };
 
-        // File display
         document.getElementById('templateUpload').onchange = function(e) {
             document.getElementById('fileNameDisplay').innerText = e.target.files[0] ? e.target.files[0].name : "Chưa chọn file...";
         };
 
-        // Tiếng Việt đọc số
         function docSoTiengViet(number) {
             if (number === 0) return "Không đồng";
             const units = ["", "nghìn", "triệu", "tỷ", "nghìn tỷ", "triệu tỷ"];
@@ -261,8 +246,22 @@
 
         const formatVND = (n) => new Intl.NumberFormat('vi-VN').format(Math.round(n));
 
+        // Hàm lấy giá trị số thuần từ chuỗi có dấu chấm
+        function getRawValue(str) {
+            return parseFloat(str.replace(/\./g, '')) || 0;
+        }
+
+        // Hàm định dạng chuỗi nhập vào với dấu chấm
+        function formatInput(e) {
+            let value = e.target.value.replace(/\./g, '');
+            if (!isNaN(value) && value !== "") {
+                e.target.value = new Intl.NumberFormat('vi-VN').format(value);
+            }
+            updatePreview();
+        }
+
         function updatePreview() {
-            const total = parseFloat(document.getElementById('totalValue').value) || 0;
+            const total = getRawValue(document.getElementById('totalValueDisplay').value);
             const s1 = total * 0.2;
             const s2 = total * 0.8;
 
@@ -274,7 +273,6 @@
             document.getElementById('viewS2Text').innerText = docSoTiengViet(s2);
         }
 
-        // Generate Logic
         document.getElementById('generateBtn').onclick = function() {
             const fileInput = document.getElementById('templateUpload');
             const status = document.getElementById('statusMsg');
@@ -296,7 +294,7 @@
                     const zip = new PizZip(e.target.result);
                     const doc = new window.docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
                     
-                    const total = parseFloat(document.getElementById('totalValue').value) || 0;
+                    const total = getRawValue(document.getElementById('totalValueDisplay').value);
                     const d = document.getElementById('contractDate').value ? new Date(document.getElementById('contractDate').value) : new Date();
                     const nameRaw = document.getElementById('customerName').value || "Khách hàng";
                     const fileNameInput = document.getElementById('customFileName').value.trim();
@@ -335,7 +333,11 @@
 
         window.onload = () => {
             document.getElementById('contractDate').valueAsDate = new Date();
-            ['totalValue', 'contractDate', 'customerName'].forEach(id => {
+            
+            const totalInp = document.getElementById('totalValueDisplay');
+            totalInp.addEventListener('input', formatInput);
+            
+            ['contractDate', 'customerName'].forEach(id => {
                 document.getElementById(id).addEventListener('input', updatePreview);
             });
             updatePreview();
